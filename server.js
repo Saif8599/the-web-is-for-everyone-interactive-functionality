@@ -12,7 +12,7 @@ const API_BASE_URL = "https://fdnd-agency.directus.app/items";
 const app = express();
 
 // Maak werken met data uit formulieren iets prettiger
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }));
 
 // Gebruik de map 'public' voor statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts)
 // Bestanden in deze map kunnen dus door de browser gebruikt worden
@@ -25,6 +25,9 @@ app.engine("liquid", engine.express());
 // Stel de map met Liquid templates in
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set("views", "./views");
+
+// Hardcoded user ID
+const userId = 1;
 
 // Maak een GET route voor de index (meestal doe je dit in de root, als /)
 app.get("/", async function (request, response) {
@@ -74,7 +77,28 @@ app.get("/stekje/:id", async function (request, response) {
   });
 });
 
-// Geen matching route request 
+// POST route voor het liken van een stekje
+app.post("/stekje/:id", async function (request, response) {
+  const stekjeId = request.params.id; // Pak de stekje ID van de URL
+
+    // Met fetch naar het koppeltabel waar ik mijn likes wil opslaan
+    await fetch("https://fdnd-agency.directus.app/items/bib_users_stekjes", {
+      // Post methode gebruiken om toe te voegen
+      method: "POST",
+      // Met headers weet de server dat ik een JSON data stuur
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        bib_users_id: userId, // Wie liked? (bib_users_id)
+        bib_stekjes_id: stekjeId, // Welke stekje wordt geliked? (bib_stekjes_id)
+      }),
+    });
+
+    console.log("Successfully liked the stekje.");
+    response.redirect(303, `/stekje/${stekjeId}`); // Redirect naar stekje detail
+
+});
+
+// Geen matching route request
 app.use((req, res) => {
   res.status(404).render("404.liquid");
 });
