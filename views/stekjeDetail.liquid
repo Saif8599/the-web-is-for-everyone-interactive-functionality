@@ -62,4 +62,16 @@
     Like
   </button>
 </form>
+
+<form action="/stekje/{{ stekje.id }}/unlike" method="POST">
+  <input
+    type="hidden"
+    name="stekjeid"
+    value="{{ stekje.id }}">
+  <button type="submit" class="like-button">
+    Unlike
+  </button>
+</form>
+
+
 {% render 'partials/foot.liquid' %}

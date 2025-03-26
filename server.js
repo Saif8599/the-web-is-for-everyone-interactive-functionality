@@ -81,21 +81,54 @@ app.get("/stekje/:id", async function (request, response) {
 app.post("/stekje/:id", async function (request, response) {
   const stekjeId = request.params.id; // Pak de stekje ID van de URL
 
-    // Met fetch naar het koppeltabel waar ik mijn likes wil opslaan
-    await fetch("https://fdnd-agency.directus.app/items/bib_users_stekjes", {
-      // Post methode gebruiken om toe te voegen
-      method: "POST",
-      // Met headers weet de server dat ik een JSON data stuur
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        bib_users_id: userId, // Wie liked? (bib_users_id)
-        bib_stekjes_id: stekjeId, // Welke stekje wordt geliked? (bib_stekjes_id)
-      }),
-    });
+  // Met fetch naar het koppeltabel waar ik mijn likes wil opslaan
+  await fetch("https://fdnd-agency.directus.app/items/bib_users_stekjes", {
+    // Post methode gebruiken om toe te voegen
+    method: "POST",
+    // Met headers weet de server dat ik een JSON data stuur
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      bib_users_id: userId, // Wie liked? (bib_users_id)
+      bib_stekjes_id: stekjeId, // Welke stekje wordt geliked? (bib_stekjes_id)
+    }),
+  });
 
-    console.log("Successfully liked the stekje.");
-    response.redirect(303, `/stekje/${stekjeId}`); // Redirect naar stekje detail
+  // Redirect naar stekje detail
+  response.redirect(303, `/stekje/${stekjeId}`);
+});
 
+// POST route voor het unliken van een stekje
+app.post("/stekje/:id/unlike", async function (request, response) {
+  const stekjeId = request.params.id;
+
+  console.log(
+    `Op zoek naar like van gebruiker ${userId} voor stekje ${stekjeId}...`
+  );
+
+  // Haal de like(s) op van de gebruiker voor dit specifieke stekje
+  const stekjesResponse = await fetch(
+    `https://fdnd-agency.directus.app/items/bib_users_stekjes?filter={"bib_stekjes_id":${stekjeId},"bib_users_id":${userId}}`
+  );
+  const data = await stekjesResponse.json();
+
+  console.log("Ontvangen data van API:", data);
+
+  // Controleer of er een like is van de ingelogde gebruiker
+  // Pak de eerste gevonden like (1 like per klik verwijderen)
+  const likeId = data.data[0].id;
+
+  console.log(`Verwijderen like ID ${likeId} van gebruiker ${userId}...`);
+
+  // Verwijder die specifieke like
+  await fetch(
+    `https://fdnd-agency.directus.app/items/bib_users_stekjes/${likeId}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  // Redirect naar stekje detail
+  response.redirect(303, `/stekje/${stekjeId}`);
 });
 
 // Geen matching route request
