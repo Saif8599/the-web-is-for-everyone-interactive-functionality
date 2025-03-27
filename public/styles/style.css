@@ -20,12 +20,16 @@ header {
   /* Logo */
   .logo {
     margin: 0px;
-    width: 100px;
     position: sticky;
     left: 2rem;
-    top: 2rem;
+    top: 5rem;
     color: var(--primary-text-color);
     z-index: 0;
+
+    img{
+      width: 100px;
+      height: 100px;
+    }
   }
 
   /* Hamburger Menu */
