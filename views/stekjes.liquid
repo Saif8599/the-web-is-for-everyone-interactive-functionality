@@ -4,17 +4,15 @@
 {% include 'partials/navbar.liquid' 
   , title: 'Stekjes' %}
 
-<details>
+
+{% include 'partials/stekjes-collection.liquid',
+ %}
+
+{% comment %} 
+ <details>
   <summary>Data</summary>
 <pre>{{ stekjes | json : 4 }}</pre>
 </details>
-
-<ul id="stekje">
-  {% for stekje in stekjes %}
-    <li class="stekje-item">
-      <a href="/stekje/{{ stekje.id }}">{{ stekje.naam }}</a>
-    </li>
-  {% endfor %}
-</ul>
+{% endcomment %}
 
 {% render 'partials/foot.liquid' %}
