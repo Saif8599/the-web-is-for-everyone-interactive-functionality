@@ -1,0 +1,18 @@
+<section class="stekjes-collection">
+  <h2 class="stekjes-collection-title">Vind jouw favoriet in onze collectie geliefde stekjes</h2>
+
+  <div class="stekjes-collection-grid">
+
+    {% for stekje in stekjes %}
+      <article class="stekje-item">
+        <img
+          src="https://fdnd-agency.directus.app/assets/{{ stekje.foto}}"
+          alt="{{ stekje.naam }}"
+          class="stekje-item-image"
+          loading="lazy">
+        <h3 class="stekje-item-title">{{ stekje.naam }}</h3>
+        <a href="stekje/{{ stekje.id }}" class="stekje-item-link">Bekijk stekje</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
