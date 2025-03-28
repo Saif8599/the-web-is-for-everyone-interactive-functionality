@@ -36,7 +36,7 @@ Deze leertaak wordt behandeld in Sprint 9. Er worden verschillende workshops aan
 - [Code/Design-Review - UI states](code-design-review-ui-states.md)
 - [Deeltaak Progressive Enhancement](https://github.com/fdnd-task/progressive-enhancement/)
 - [Browsers en Feature detection](browsers-en-feature-detection.md)
-- [Code/Design-Review - Post](code-design-review-post.md)
+- [Code/Design-Review - Device Lab](code-design-review-device-lab.md)
 - [Client-Side Fetch met Server-Side partials](client-side-fetch.md)
 - [Wrap-up](wrap-up.md)
 
