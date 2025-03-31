@@ -93,6 +93,8 @@ app.post("/stekje/:id", async function (request, response) {
     }),
   });
 
+  console.log(`Toevoegen stekje ${stekjeId} aan gebruiker ${userId}`);
+
   // Redirect naar stekje detail
   response.redirect(303, `/stekje/${stekjeId}`);
 });
