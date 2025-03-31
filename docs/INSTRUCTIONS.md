@@ -47,5 +47,5 @@ Deze opdracht is done als:
 - [ ] Jouw gebruikers kunnen iets achterlaten of toevoegen op jouw website (user generated content)
 - [ ] Je website is online gepubliceerd
 - [ ] Je hebt interactieve functionaliteit ontworpen en gemaakt met NodeJS, Express, Liquid en een REST API en HTML, CSS en client-side JS
-- [ ] Je hebt je werk getest in verschillende browsers en devices en de tests gedocumenteerd in je wiki
+- [ ] Je hebt je werk getest in verschillende browsers en devices en de tests gedocumenteerd in je issues
 - [ ] Je hebt in de Readme bij 'Kenmerken' uitgelegd wat Progressive Enhancement is en hoe je dit hebt toegepast

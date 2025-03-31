@@ -30,7 +30,7 @@ Progressive Enhancement is een coding strategie, waarbij je je website opbouwd i
 2) Bouw die functionaliteit met de _simpelste techniek_ (meestal HTML, met een klein beetje Mobile First CSS voor de huisstijl)
 3) Voeg daarna _extra enhancements_ toe met CSS en client-side JS, om de User Experience te verbeteren (de leukste stap!)
 
-Die laatste stap kun je het best doen met _feature detection_. 
+in de 3e laag kun je _feature detection_ gebruiken.
 Met _feature detection_ check je of een browser een bepaalde CSS of JS techniek kan uitvoeren. 
 
 ### @support in CSS
@@ -75,7 +75,7 @@ h1 {
 	color: color(display-p3 1 0.08 0); /* super red! */;
 }
 ```
-Bijvoorbeeld: Bepaal eerst de kleur in hex en daarna met de `color()` function en het nieuwe kleurenchema `display-P3`. Als een browser dit niet kan uitvoeren, is de kleur wel rood. Kan een browser het wel uitvoeren? Dan is de kleur super rood!
+Bijvoorbeeld: Bepaal eerst de kleur in hex en daarna met de `color()` function en het nieuwe kleurenchema `display-P3`. Als een browser dit niet kent zal het die regel negeren, maar is de kleur wel rood. Kan een browser het wel uitvoeren? Dan is de kleur super rood!
 
 
 #### Bronnen
