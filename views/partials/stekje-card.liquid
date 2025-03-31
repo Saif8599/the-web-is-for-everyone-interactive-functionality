@@ -1,0 +1,78 @@
+<div class="stekje-card">
+  <h1>{{ stekje.naam }}</h1>
+
+  <div class="stekje-container">
+    <div class="stekje-media">
+      <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{ stekje.naam }}">
+      <div class="stekje-actions">
+        <form
+          action="/stekje/{{ stekje.id }}"
+          method="POST"
+          class="like-form">
+          <input
+            type="hidden"
+            name="stekjeid"
+            value="{{ stekje.id }}">
+          <button type="submit" class="like-button">Like</button>
+        </form>
+        <form
+          action="/stekje/{{ stekje.id }}/unlike"
+          method="POST"
+          class="unlike-form">
+          <input
+            type="hidden"
+            name="stekjeid"
+            value="{{ stekje.id }}">
+          <button type="submit" class="unlike-button">Unlike</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="stekje-info">
+      <div class="info-item">
+        <strong>Beschrijving:</strong>
+        <p>{{ stekje.beschrijving }}</p>
+      </div>
+
+      <div class="info-item">
+        <strong>Land van herkomst:</strong>
+        <p>{{ stekje.land_van_herkomst }}</p>
+      </div>
+
+      <div class="info-item">
+        <strong>Onderhoud:</strong>
+        <p>{{ stekje.onderhoud }}</p>
+      </div>
+
+      <div class="info-item">
+        <strong>Zonlicht:</strong>
+        <p>{{ stekje.zonlicht }}</p>
+      </div>
+
+      <div class="info-item">
+        <strong>Watergeven:</strong>
+        <p>{{ stekje.watergeven }}</p>
+      </div>
+
+      <div class="info-item">
+        <strong>Voeding:</strong>
+        <p>{{ stekje.voeding }}</p>
+      </div>
+
+      <div class="info-item">
+        <strong>Verpotten:</strong>
+        <p>{{ stekje.verpotten }}</p>
+      </div>
+
+      <div class="info-item">
+        <strong>Temperatuur:</strong>
+        <p>{{ stekje.temperatuur }}</p>
+      </div>
+
+      <div class="info-item">
+        <strong>Giftig voor huisdieren:</strong>
+        <p>{{ stekje.giftig }}</p>
+      </div>
+    </div>
+  </div>
+</div>
