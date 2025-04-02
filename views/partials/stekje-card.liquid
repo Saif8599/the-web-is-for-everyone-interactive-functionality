@@ -9,22 +9,28 @@
           <form
             action="/stekje/{{ stekje.id }}"
             method="POST"
-            class="like-form">
+            class="like-form js-form">
             <input
               type="hidden"
               name="stekjeid"
               value="{{ stekje.id }}">
-            <button type="submit" class="like-button">Like</button>
+            <button type="submit" class="like-button js-submit-button">
+              <span class="js-button-text">Like</span>
+              <span class="loader js-loader" style="display: none;"></span>
+            </button>
           </form>
           <form
             action="/stekje/{{ stekje.id }}/unlike"
             method="POST"
-            class="unlike-form">
+            class="unlike-form js-form">
             <input
               type="hidden"
               name="stekjeid"
               value="{{ stekje.id }}">
-            <button type="submit" class="unlike-button">Unlike</button>
+            <button type="submit" class="unlike-button js-submit-button">
+              <span class="js-button-text">Unike</span>
+              <span class="loader js-loader" style="display: none;"></span>
+            </button>
           </form>
         </div>
       </div>
@@ -80,6 +86,23 @@
     {% include '../partials/empty-stekje-card.liquid' %}
   {% endif %}
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.js-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      const button = this.querySelector('.js-submit-button');
+      const buttonText = this.querySelector('.js-button-text');
+      const loader = this.querySelector('.js-loader');
+
+      button.disabled = true;
+
+      if (buttonText) buttonText.style.display = 'none';
+      if (loader) loader.style.display = 'inline-block';
+    });
+  });
+  });
+</script>
 
 <style>
   .stekje-card {
@@ -216,5 +239,34 @@
     .stekje-actions {
       margin-top: 2.5rem;
     }
+  }
+
+  /* Loader */
+  .loader {
+    color: var(--secondary-text-color);
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    align-self: center;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  button[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 </style>
