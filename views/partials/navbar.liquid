@@ -1,18 +1,20 @@
 <header>
   <div class="overlay"></div>
+
   <a class="logo" href="/">
     <img src="../assets/logo-bieb-in-bloei-wit.svg" alt="Bieb in Bloei">
   </a>
 
   <!-- Hamburger Menu -->
-  <div class="hamburger">
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-  </div>
+  <button class="hamburger" id="hamburger">
+    &#9776;
+  <!-- Hamburger icon (three bars) -->
+  </button>
+
+  
 
   <!-- Navbar Links -->
-  <ul class="navbar-links">
+  <ul class="navbar-links" id="navbar-links">
     <li>
       <a href="/stekjes">Stekjes</a>
     </li>
@@ -33,10 +35,15 @@
     </li>
   </ul>
 
-  <h1>
-    {{ title }}
-  </h1>
-  <h2>
-    {{ description }}
-  </h2>
+  <h1>{{ title }}</h1>
+  <h2>{{ description }}</h2>
 </header>
+
+<script>
+  // Toggle menu visibility on hamburger click
+  document.getElementById('hamburger').addEventListener('click', function() {
+    const navbarLinks = document.getElementById('navbar-links');
+    navbarLinks.classList.toggle('active'); // Show or hide the menu
+    this.classList.toggle('active'); // Optionally change the button style when clicked
+  });
+</script>

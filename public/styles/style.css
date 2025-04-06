@@ -26,7 +26,7 @@ header {
     color: var(--primary-text-color);
     z-index: 0;
 
-    img{
+    img {
       width: 100px;
       height: 100px;
     }
@@ -35,34 +35,23 @@ header {
   /* Hamburger Menu */
   .hamburger {
     display: block;
+    background-color: #333;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    font-size: 30px;
+    color: white;
+    z-index: 100;
     position: absolute;
     top: 1.5rem;
     right: 1rem;
-    z-index: 0;
-    cursor: pointer;
+
+    &.active {
+      background-color: #444;
+    }
 
     @media (min-width: 768px) {
       display: none;
-    }
-
-    .line {
-      width: 30px;
-      height: 3px;
-      background-color: var(--primary-text-color);
-      margin: 6px 0;
-      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    }
-
-    .hamburger.active .line:nth-child(1) {
-      transform: rotate(-45deg) translate(-5px, 6px);
-    }
-
-    .hamburger.active .line:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active .line:nth-child(3) {
-      transform: rotate(45deg) translate(-5px, -6px);
     }
   }
 
@@ -81,8 +70,23 @@ header {
     padding: 1em;
     z-index: 2;
 
-    &active {
+    &.active {
       display: flex;
+    }
+
+    li {
+      padding: 10px 0;
+    }
+
+    li a {
+      color: var(--primary-text-color);
+      text-decoration: none;
+      transition: transform 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
+    }
+
+    li a:hover {
+      transform: scale(1.1);
+      color: var(--primary-text-color);
     }
 
     @media (min-width: 768px) {
@@ -95,18 +99,8 @@ header {
     }
 
     @media (min-width: 1024px) {
-      gap: 50px;
-    }
-
-    li a {
-      color: var(--primary-text-color);
-      text-decoration: none;
-      transition: transform 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
-
-      &:hover {
-        transform: scale(1.1);
-        position: relative;
-        color: var(--primary-text-color);
+      li {
+        margin-right: 50px;
       }
     }
   }
